@@ -1,4 +1,4 @@
-with 
+with
     staging as (
         select *
         from {{ref('stg_creditcard')}}

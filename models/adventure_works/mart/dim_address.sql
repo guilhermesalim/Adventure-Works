@@ -1,5 +1,5 @@
 with
-    address as (
+    addresstemp as (
         select
             addressid
             , stateprovinceid
@@ -7,45 +7,46 @@ with
             , addressline2
             , city
             , postalcode
+            
         from {{ref('stg_address')}}
     )
 
-    , state as (
+    , statetemp as (
         select 
             stateprovinceid
-            , name
+            , name AS state_name
             , countryregioncode
             , stateprovincecode
-        
+
         from {{ref('stg_stateprovince')}}
     )
 
-    , country as (
+    , countrytemp as (
         select
             countryregioncode
-            , name
+            , name AS country_name
         
         from {{ref('stg_countryregion')}}
     )
 
     , final as (
         select
-            address.addressid
-            , address.addressline1
-            , address.addressline2
-            , address.city
-            , address.postalcode
+            addresstemp.addressid
+            , addresstemp.addressline1
+            , addresstemp.addressline2
+            , addresstemp.city
+            , addresstemp.postalcode
 
-            , state.stateprovinceid
-            , state.name AS state_name
-            , state.countryregioncode
-            , state.stateprovincecode
+            , statetemp.stateprovinceid
+            , statetemp.state_name
+            , statetemp.stateprovincecode
+            , statetemp.countryregioncode
 
-            , country.name AS country_name
+            , countrytemp.country_name
         
-        from state
-        left join address on state.stateprovinceid = address.stateprovinceid
-        left join country on state.countryregioncode = country.countryregioncode
+        from statetemp
+        left join addresstemp on statetemp.stateprovinceid = addresstemp.stateprovinceid
+        left join countrytemp on statetemp.countryregioncode = countrytemp.countryregioncode
     )
 
 select * from final
