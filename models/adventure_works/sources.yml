@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: adventure_works_stitch
+    schema: adventure_works_stitch
+    description: Fontes dos dados da Adventure Works
+    tables:
+      - name: address
+      - name: countryregion
+      - name: creditcard
+      - name: customer
+      - name: person
+      - name: product
+      - name: salesorderdetail
+      - name: salesorderheader
+      - name: salesorderheadersalesreason
+      - name: salesreason
+      - name: stateprovince
+      - name: store
