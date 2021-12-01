@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_creditcard
+    description: Dimensão de cartão
+    columns:
+      - name: creditcard_sk
+        description: primary key of the creditcard
+        tests:
+          - unique
+          - not_null
