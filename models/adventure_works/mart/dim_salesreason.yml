@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: dim_salesreason
+    description: Dimensão de motivos de vendas

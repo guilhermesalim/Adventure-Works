@@ -30,7 +30,9 @@ with
             , customer.customer_sk as customer_fk
             , creditcard.creditcard_sk as creditcard_fk
             , orderheader.billtoaddressid as addressid
-            , salesreason.salesreasonid
+            , salesreason.salesreasonsname
+            , salesreason.salesreasonstype
+            , salesreason.qtyofreasons
             , orderheader.orderdate
             , orderheader.duedate
             , orderheader.shipdate
@@ -68,7 +70,9 @@ with
             , orderheader_with_sk.customer_fk
             , orderheader_with_sk.creditcard_fk
             , orderheader_with_sk.addressid
-            , orderheader_with_sk.salesreasonid
+            , orderheader_with_sk.salesreasonsname
+            , orderheader_with_sk.salesreasonstype
+            , orderheader_with_sk.qtyofreasons
             , orderheader_with_sk.orderdate
             , orderheader_with_sk.duedate
             , orderheader_with_sk.shipdate

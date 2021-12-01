@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: fact_orderdetail
+    description: Tabela fato de vendas
+    columns:
+      - name: creditcard_fk
+        description: the creditcard foreign key
+        tests:
+          - relationships:
+              to: ref('dim_creditcard')
+              field: creditcard_sk
+
+        
+      - name: customer_fk
+        description: the customer foreign key
+        tests:
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_sk
+
+      - name: product_fk
+        description: the product foreign key
+        tests:
+          - relationships:
+              to: ref('dim_product')
+              field: product_sk

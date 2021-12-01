@@ -14,7 +14,7 @@ with
 	    from {{ref('stg_salesorderheadersalesreason')}}
     )
     
-    , final as (
+    , part3 as (
         select
             part2.salesorderid
             , part2.salesreasonid
@@ -22,6 +22,16 @@ with
             , part1.reason_name
         from part2
         left join part1 on part1.salesreasonid = part2.salesreasonid
+    )
+
+    , final as (
+        select
+            salesorderid
+            , STRING_AGG(reason_name, ', ') as salesreasonsname
+            , STRING_AGG(reasontype, ', ') as salesreasonstype
+            , count(reason_name) as qtyofreasons
+        from part3
+        group by salesorderid
     )
 
 select * from final
